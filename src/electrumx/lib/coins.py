@@ -43,6 +43,7 @@ from electrumx.lib.hash import HASHX_LEN, hex_str_to_hash
 from electrumx.lib.script import (_match_ops, Script, ScriptError,
                                   ScriptPubKey, OpCodes)
 import electrumx.lib.tx as lib_tx
+from electrumx.lib import tx as lib_tx
 from electrumx.lib.tx import Tx
 import electrumx.lib.tx_dash as lib_tx_dash
 import electrumx.lib.tx_axe as lib_tx_axe
@@ -4128,3 +4129,23 @@ class FerriteTestnet(Ferrite):
         'enode2.ferritecoin.org s t',
         'enode3.ferritecoin.org s t',
     ]
+
+class Junkcoin(AuxPowMixin, Coin):
+    NAME = "Junkcoin"
+    SHORTNAME = "JKC"
+    NET = "mainnet"
+    VALUE_PER_COIN = 100000000
+    XPUB_HEADERS = {
+        'standard': 0x0488b21e,
+    }
+    XPRV_HEADERS = {
+        'standard': 0x0488ade4,
+    }
+    GENESIS_HASH = 'a2effa738145e377e08a61d76179c21703e13e48910b30a2a87f0dfe794b64c6'
+    DESERIALIZER = lib_tx.DeserializerAuxPowSegWit
+    REORG_LIMIT = 2000
+    TX_COUNT = 459650
+    TX_COUNT_HEIGHT = 405084
+    TX_PER_BLOCK = 2
+    RPC_PORT = 9771
+    PEERS = []
