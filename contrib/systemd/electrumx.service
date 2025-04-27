@@ -1,14 +1,33 @@
 [Unit]
-Description=Electrumx
+Description=ElectrumX Server
 After=network.target
 
 [Service]
-EnvironmentFile=/etc/electrumx.conf
-ExecStart=/usr/local/bin/electrumx_server
-ExecStop=/usr/local/bin/electrumx_rpc -p 8000 stop
+Type=simple
+# Environment variables for ElectrumX
+# Replace these values with your own configuration
+Environment=COIN=YourCoin
+Environment=DB_DIRECTORY=/path/to/electrumx/db
+Environment=DAEMON_URL=http://username:password@127.0.0.1:port/
+Environment=SERVICES=tcp://:50001,ssl://:50002,rpc://:8000
+Environment=REPORT_SERVICES=tcp://your.domain.com:50001,ssl://your.domain.com:50002
+Environment=SSL_CERTFILE=/path/to/electrumx/certs/fullchain.pem
+Environment=SSL_KEYFILE=/path/to/electrumx/certs/privkey.pem
+Environment=PEER_DISCOVERY=on
+# Add any other required environment variables here
+
+ExecStart=/path/to/electrumx/electrumx_server
 User=electrumx
+Group=electrumx
+WorkingDirectory=/path/to/electrumx
 LimitNOFILE=8192
 TimeoutStopSec=30min
+Restart=on-failure
+RestartSec=60
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target

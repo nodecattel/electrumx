@@ -1,0 +1,87 @@
+# ElectrumX Configuration Example - Essential Settings Only
+# This file should be placed in your ElectrumX directory.
+# Each setting should be on its own line in KEY=VALUE format.
+
+# ===== REQUIRED SETTINGS =====
+
+# Cryptocurrency to serve (must exist in the Coin classes in lib/coins.py)
+COIN=Junkcoin
+
+# Database directory for storing blockchain data
+DB_DIRECTORY=/path/to/electrumx/db
+
+# Daemon URL(s) for connecting to the cryptocurrency node
+# For multiple daemons, use comma to separate URLs for failover
+DAEMON_URL=http://username:password@127.0.0.1:9771/
+
+# ===== SERVICE CONFIGURATION =====
+
+# Services to run on this server (comma-separated list)
+# Format: protocol://host:port (host can be omitted to bind to all interfaces)
+SERVICES=tcp://:50001,ssl://:50002,rpc://:8000
+
+# Services to advertise to clients and other servers (public-facing addresses)
+# Format: protocol://public_domain_or_ip:port (must use public domain/IP)
+REPORT_SERVICES=tcp://your.domain.com:50001,ssl://your.domain.com:50002
+
+# ===== SSL SETTINGS (Required if using SSL/WSS) =====
+
+# Path to SSL certificate file
+SSL_CERTFILE=/path/to/electrumx/certs/fullchain.pem
+
+# Path to SSL key file
+SSL_KEYFILE=/path/to/electrumx/certs/privkey.pem
+
+# Peer discovery (on, off, or self) - defaults to on
+PEER_DISCOVERY=on
+
+# ===== OPTIONAL SETTINGS (Uncomment to use) =====
+
+# Network type (mainnet, testnet, etc.) - defaults to mainnet
+# NET=mainnet
+
+# Database engine (leveldb or rocksdb) - defaults to leveldb
+# DB_ENGINE=leveldb
+
+# Donation address to display to users
+# DONATION_ADDRESS=your_cryptocurrency_address_here
+
+# Banner file to show in client's console
+# BANNER_FILE=/path/to/banner.txt
+
+# Anonymize IP addresses in logs
+# ANON_LOGS=1
+
+# Log level (debug, info, warning, error)
+# LOG_LEVEL=info
+
+# Allow running as root (not recommended)
+# ALLOW_ROOT=1
+
+# ===== RESOURCE LIMITS (Uncomment to adjust defaults) =====
+
+# Maximum number of concurrent connections (default 1000)
+# MAX_SESSIONS=1000
+
+# Maximum incoming message size in bytes (default 1000000)
+# MAX_RECV=1000000
+
+# Maximum outgoing message size in bytes (default 8100000)
+# MAX_SEND=8100000
+
+# Cache size in MB (default 1200, recommend < 60% of available RAM)
+# CACHE_MB=1200
+
+# ===== ADVANCED PERFORMANCE TUNING =====
+
+# Soft cost limit before throttling begins (default 1000)
+# COST_SOFT_LIMIT=1000
+
+# Hard cost limit that disconnects a session (default 10000)
+# COST_HARD_LIMIT=10000
+
+# Request timeout in seconds (default 30)
+# REQUEST_TIMEOUT=30
+
+# Session timeout in seconds (default 600)
+# SESSION_TIMEOUT=600
